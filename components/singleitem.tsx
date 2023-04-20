@@ -1,8 +1,8 @@
 "use client";
 
-import { CoachListI } from "@/utils/types";
+import { CoachDataI } from "@/utils/types";
 
-export const SingleItem = ({ d }: { d: CoachListI }) => {
+export const SingleItem = ({ d }: { d: CoachDataI }) => {
   return (
     <div>
       <div>
