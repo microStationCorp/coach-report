@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const Navbar = () => {
+export const Header = () => {
   return (
     <div
       className={
@@ -14,14 +14,10 @@ export const Navbar = () => {
       </div>
       <div className="text-slate-100 flex space-x-2">
         <div className="capitalize">
-          <Link href="/add_coach" passHref className="hover:font-semibold">
-            add coach
-          </Link>
+          <Link href="/add_coach" passHref className="hover:font-semibold">add coach</Link>
         </div>
         <div className="capitalize">
-          <Link href="/coach_list" passHref className="hover:font-semibold">
-            coach list
-          </Link>
+          <Link href="/coach_list" passHref className="hover:font-semibold">coach list</Link>
         </div>
       </div>
     </div>
