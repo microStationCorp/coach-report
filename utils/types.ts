@@ -1,7 +1,3 @@
-export interface CoachDataI {
-    id: string;
-    created_at: string;
-    base: string;
-    coach_number: string;
-    coach_type: string;
-  }
+import { Database } from "./supabase";
+
+export type CoachDataI = Database["public"]["Tables"]["coach_list"]["Row"]
