@@ -18,8 +18,7 @@ export default async function CoachListPage() {
       <div className="text-xl text-center capitalize text-slate-700 underline underline-offset-4">
         coach list
       </div>
-      {/* <div>{JSON.stringify(msg)}</div> */}
-      {success ? <ListComp coaches={msg} /> : null}
+      {success ? <ListComp coaches={msg} /> : <div>Error occured</div>}
     </div>
   );
 }
