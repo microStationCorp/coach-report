@@ -1,5 +1,3 @@
-"use client";
-
 import { CoachListI } from "@/utils/types";
 
 export const SingleItem = ({ d }: { d: CoachListI }) => {

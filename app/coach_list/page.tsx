@@ -1,24 +1,25 @@
 import { ListComp } from "@/components/listcomp";
-import { checkEnvironment } from "@/utils/checkBaseURL";
+import { supabase } from "@/utils/supabaseClient";
 
 const getCoachList = async () => {
-  const response = await fetch(
-    checkEnvironment().concat("/api/get_all_coaches"),
-    { cache: "no-store" }
-  );
-  const data = await response.json();
-  return data;
+  const { data, error } = await supabase.from("coach_list").select("*");
+  if (!error) {
+    return { success: true, msg: data };
+  } else {
+    return { success: false };
+  }
 };
 
 export default async function CoachListPage() {
-  const coaches = await getCoachList();
+  const { success, msg } = await getCoachList();
 
   return (
     <div className="bg-gradient-to-b from-slate-400 to-slate-300 rounded-md p-2 w-5/6 sm:w-4/5 md:w-3/4 lg:w-2/3 mx-auto">
       <div className="text-xl text-center capitalize text-slate-700 underline underline-offset-4">
         coach list
       </div>
-      <ListComp coaches={coaches.coach_list} />
+      {/* <div>{JSON.stringify(msg)}</div> */}
+      {success ? <ListComp coaches={msg} /> : null}
     </div>
   );
 }
