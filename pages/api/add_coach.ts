@@ -23,6 +23,7 @@ export default async function handler(
                 base: values.base,
                 coach_number: values.coach_number,
                 coach_type: values.coach_type,
+                rake_type: values.rake_type,
               },
             ])
             .select();

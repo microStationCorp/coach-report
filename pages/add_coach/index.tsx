@@ -6,7 +6,12 @@ import Head from "next/head";
 export default function AddCoach() {
   const [data, setData] = useState<{
     success: boolean;
-    data: { base: string; coach_number: string; coach_type: string }[];
+    data: {
+      base: string;
+      coach_number: string;
+      coach_type: string;
+      rake_type: string;
+    }[];
   }>();
   const [error, setError] = useState<{
     errorStat: boolean;
@@ -22,11 +27,17 @@ export default function AddCoach() {
       <div className="bg-gradient-to-r from-slate-300 to-slate-200 w-5/6 sm:w-4/5 md:w-3/4 lg:w-2/3 mx-auto p-2 rounded shadow">
         <div className="text-xl capitalize text-center">add coach</div>
         <Formik
-          initialValues={{ coach_number: "", coach_type: "", base: "" }}
+          initialValues={{
+            coach_number: "",
+            coach_type: "",
+            base: "",
+            rake_type: "LHB",
+          }}
           validationSchema={yup.object().shape({
             coach_number: yup.number().required(),
             coach_type: yup.string().required(),
             base: yup.string().required(),
+            rake_type: yup.string().required(),
           })}
           onSubmit={async (values, { resetForm }) => {
             setData({ success: false, data: [] });
@@ -69,6 +80,14 @@ export default function AddCoach() {
                   placeholder="coach type"
                   className="mb-2 p-1 rounded bg-slate-100"
                 />
+                <Field
+                  as="select"
+                  name="rake_type"
+                  className="mb-2 p-1 rounded bg-slate-100"
+                >
+                  <option value="LHB">LHB</option>
+                  <option value="SG">SG</option>
+                </Field>
                 <button
                   className="border border-slate-700 px-2 hover:bg-slate-700 rounded shadow hover:text-slate-100"
                   type="submit"
