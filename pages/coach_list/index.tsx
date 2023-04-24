@@ -2,8 +2,11 @@ import { ListComp } from "@/components/listcomp";
 import { supabase } from "@/utils/supabaseClient";
 import { CoachDataI } from "@/utils/types";
 import Head from "next/head";
+import { useState } from "react";
 
 export default function CoachListPage({ data }: { data: CoachDataI[] }) {
+  const [coaches, setCoaches] = useState(data);
+
   return (
     <>
       <Head>
@@ -15,7 +18,7 @@ export default function CoachListPage({ data }: { data: CoachDataI[] }) {
         <div className="text-xl text-center capitalize text-slate-700 underline underline-offset-4">
           coach list
         </div>
-        <ListComp coaches={data} />
+        <ListComp coaches={coaches} setCoaches={setCoaches}/>
       </div>
     </>
   );

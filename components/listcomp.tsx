@@ -1,7 +1,14 @@
 import { CoachDataI } from "@/utils/types";
 import { SingleItem } from "./singleitem";
+import { Dispatch, SetStateAction } from "react";
 
-export const ListComp = ({ coaches }: { coaches: CoachDataI[] }) => {
+export const ListComp = ({
+  coaches,
+  setCoaches,
+}: {
+  coaches: CoachDataI[];
+  setCoaches: Dispatch<SetStateAction<CoachDataI[]>>;
+}) => {
   return (
     <>
       {coaches == null || coaches.length == 0 ? (
@@ -9,7 +16,7 @@ export const ListComp = ({ coaches }: { coaches: CoachDataI[] }) => {
       ) : (
         <div>
           {coaches.map((d: CoachDataI) => (
-            <SingleItem d={d} key={d.id} />
+            <SingleItem d={d} key={d.id} setCoaches={setCoaches} />
           ))}
         </div>
       )}
