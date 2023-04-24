@@ -1,6 +1,20 @@
-import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+
+const Links = [
+  {
+    text: "Add Coach",
+    url: "/add_coach",
+  },
+  {
+    text: "coach list",
+    url: "/coach_list",
+  },
+  {
+    text: "Damages",
+    url: "/damages",
+  },
+];
 
 export const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -63,30 +77,25 @@ export const Navbar = () => {
                 navbar ? "block" : "hidden"
               }`}
             >
-              <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                <div className="capitalize font-semibold">
-                  <Link
-                    href="/add_coach"
-                    passHref
-                    className="hover:font-semibold"
-                  >
-                    add coach
-                  </Link>
-                </div>
-                <div className="capitalize font-semibold">
-                  <Link
-                    href="/coach_list"
-                    passHref
-                    className="hover:font-semibold"
-                  >
-                    coach list
-                  </Link>
-                </div>
+              <div className="items-center justify-center space-y-4 md:flex md:space-x-4 md:space-y-0">
+                {Links.map((l) => (
+                  <NavItem key={l.url} text={l.text} url={l.url} />
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
     </>
+  );
+};
+
+const NavItem = ({ text, url }: { text: string; url: string }) => {
+  return (
+    <div className="capitalize font-semibold">
+      <Link href={url} passHref className="hover:font-semibold">
+        {text}
+      </Link>
+    </div>
   );
 };
