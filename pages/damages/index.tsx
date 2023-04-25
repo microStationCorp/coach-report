@@ -31,8 +31,8 @@ export default function Damages() {
       </Head>
       <div className="p-4 bg-slate-300 rounded-md">
         {data.map((d) => (
-          <>
-            <div key={d.id} className="p-2">
+          <div key={d.id}>
+            <div className="p-2">
               <div>
                 <span className="capitalize font-semibold">date:</span>
                 <span>{d.date}</span>
@@ -56,7 +56,7 @@ export default function Damages() {
               </div>
             </div>
             <hr />
-          </>
+          </div>
         ))}
       </div>
     </>
