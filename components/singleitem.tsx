@@ -1,4 +1,5 @@
 import { CoachDataI } from "@/utils/types";
+import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
 
 export const SingleItem = ({
@@ -13,7 +14,9 @@ export const SingleItem = ({
   return (
     <div className="uppercase text-slate-700 flex justify-between items-center mx-2">
       <div className=" hover:bg-gradient-to-b from-slate-300 to-slate-400 hover:cursor-pointer hover:rounded-md hover:shadow-md p-2">
-        {d.base}-{d.coach_number}-{d.coach_type}
+        <Link href={`/coach/${d.id}`}>
+          {d.base}-{d.coach_number}-{d.coach_type}
+        </Link>
       </div>
       {isDeleting ? (
         <div>
