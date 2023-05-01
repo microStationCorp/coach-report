@@ -1,9 +1,10 @@
 import { Layout } from "@/components/layout";
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Router } from "next/router";
 import { useState } from "react";
 import Loader from "@/components/loader";
+
+import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setLoading] = useState(false);
