@@ -1,4 +1,5 @@
 import { supabase } from "@/utils/supabaseClient";
+import { CoachDataI } from "@/utils/types";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -7,16 +8,21 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "POST":
-      const { values } = req.body;
+      const { values }: { values: CoachDataI } = req.body;
+
+      //check if coach already present
       const { data: coach_list, error } = await supabase
         .from("coach_list")
         .select("*")
         .eq("base", values.base)
         .eq("coach_number", values.coach_number)
-        .eq("coach_type", values.coach_type);
+        .eq("coach_type", values.coach_type)
+        .eq("rake_type", values.rake_type);
+
       if (coach_list?.length == 0) {
         try {
-          const { data, error } = await supabase
+          //if not present create a coach
+          const { data: created_coach, error } = await supabase
             .from("coach_list")
             .insert([
               {
@@ -27,7 +33,19 @@ export default async function handler(
               },
             ])
             .select();
-          res.status(200).json({ success: true, data });
+
+          //create a sg or lhb equipment table
+          console.log(values.rake_type, created_coach![0].rake_type);
+          if (values.rake_type?.toUpperCase() == "SG") {
+            const { data, error } = await supabase
+              .from("sg_coach_table")
+              .insert([{ coach: created_coach![0].id }]);
+          } else {
+            const { data, error } = await supabase
+              .from("lhb_coach_table")
+              .insert([{ coach: created_coach![0].id }]);
+          }
+          res.status(200).json({ success: true, data: created_coach });
         } catch {
           res.status(500).json({ msg: "error" });
         }
