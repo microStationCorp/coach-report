@@ -18,14 +18,17 @@ export default function CoachListPage({ data }: { data: CoachDataI[] }) {
         <div className="text-xl text-center capitalize text-slate-700 underline underline-offset-4">
           coach list
         </div>
-        <ListComp coaches={coaches} setCoaches={setCoaches}/>
+        <ListComp coaches={coaches} setCoaches={setCoaches} />
       </div>
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const { data, error } = await supabase.from("coach_list").select("*");
+  const { data, error } = await supabase
+    .from("coach_list")
+    .select("*")
+    .order("created_at", { ascending: false });
 
   return {
     props: { data },

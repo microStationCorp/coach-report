@@ -89,11 +89,15 @@ export default function AddCoach() {
                   <option value="SG">SG</option>
                 </Field>
                 <button
-                  className="border border-slate-700 px-2 hover:bg-slate-700 rounded shadow hover:text-slate-100"
+                  className={`border capitalize border-slate-700 px-2 rounded shadow ${
+                    isSubmitting
+                      ? "bg-slate-700 text-slate-500"
+                      : "bg-slate-500 hover:bg-slate-700 text-slate-100"
+                  } `}
                   type="submit"
                   disabled={isSubmitting}
                 >
-                  Submit
+                  {isSubmitting ? "wait..." : "submit"}
                 </button>
               </div>
               {data?.success ? (
