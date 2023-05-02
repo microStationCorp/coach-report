@@ -35,7 +35,6 @@ export default async function handler(
             .select();
 
           //create a sg or lhb equipment table
-          console.log(values.rake_type, created_coach![0].rake_type);
           if (values.rake_type?.toUpperCase() == "SG") {
             const { data, error } = await supabase
               .from("sg_coach_table")
