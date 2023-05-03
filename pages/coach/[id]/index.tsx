@@ -28,6 +28,7 @@ export default function CoachPage({
               ))}
           </div>
         </div>
+        {/* coach equipment */}
         <div className="sm:pl-4 pb-4">
           <div className="text-2xl underline">Coach Equipments :</div>
           <div className="pl-2 space-y-1">

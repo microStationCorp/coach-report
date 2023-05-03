@@ -46,8 +46,10 @@ export const SingleItem = ({
             strokeWidth={1.5}
             stroke="currentColor"
             onClick={() => {
-              setDeleting(true);
-              delete_coach(d.id, setCoaches, setDeleting);
+              if (confirm("do you want to delete?")) {
+                setDeleting(true);
+                delete_coach(d.id, setCoaches, setDeleting);
+              }
             }}
             className="w-6 h-6 hover:text-blue-600 hover:cursor-pointer"
           >
