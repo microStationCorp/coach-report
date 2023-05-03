@@ -2,4 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'react-datepicker/dist/react-datepicker'
+* {
+  transition-duration: 200ms;
+}
