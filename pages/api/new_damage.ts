@@ -21,7 +21,11 @@ export default async function handler(
         ])
         .select();
 
-      res.status(200).json({ data });
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      res.status(200).json({success:true, data });
       break;
     default:
       res.status(405).json({ msg: "wrong method" });

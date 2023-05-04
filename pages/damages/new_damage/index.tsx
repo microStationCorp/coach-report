@@ -2,12 +2,18 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import Head from "next/head";
 import { supabase } from "@/utils/supabaseClient";
+import { DamageCoachI } from "@/utils/types";
+import { useState } from "react";
 
 export default function NewDamage({
   coaches,
 }: {
   coaches: { id: string; coach_number: string }[];
 }) {
+  const [resData, setResdata] = useState<{
+    success: boolean;
+    data: DamageCoachI[];
+  }>();
   return (
     <>
       <Head>
@@ -36,6 +42,7 @@ export default function NewDamage({
               body: JSON.stringify({ values }),
             });
             const d = await res.json();
+            setResdata(d);
 
             resetForm();
           }}
@@ -87,6 +94,11 @@ export default function NewDamage({
                   {isSubmitting ? "wait..." : "submit"}
                 </button>
               </div>
+              {resData?.success ? (
+                <div className="uppercase bg-green-300 text-green-800 p-1 rounded-md">
+                  submittted
+                </div>
+              ) : null}
               <div>
                 <ErrorMsgComp name="rake" />
                 <ErrorMsgComp name="coach" />
