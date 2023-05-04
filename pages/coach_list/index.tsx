@@ -18,7 +18,11 @@ export default function CoachListPage({ data }: { data: CoachDataI[] }) {
         <div className="text-xl text-center capitalize text-slate-700 underline underline-offset-4">
           coach list
         </div>
-        <ListComp coaches={coaches} setCoaches={setCoaches} />
+        {coaches.length == 0 ? (
+          <div className="text-center text-red-600 font-semibold">Nothing to show</div>
+        ) : (
+          <ListComp coaches={coaches} setCoaches={setCoaches} />
+        )}
       </div>
     </>
   );
